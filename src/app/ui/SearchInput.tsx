@@ -8,7 +8,7 @@ export default function SearchInput({ ...props }: SearchInputProps) {
   const { value } = props;
   return (
     <div
-      className={`max-w-[400px] flex items-center px-4 py-1.5 rounded-lg bg-gray-50 ring-sky-400/30 ring-offset-2 ${
+      className={`w-[300px] md:w-[600px] flex items-center px-4 py-1.5 rounded-lg border-2 border-slate-200 ring-sky-400/30 ring-offset-2 ${
         focused && "ring md:ring-0"
       }`}
     >

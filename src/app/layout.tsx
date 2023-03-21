@@ -17,21 +17,29 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="overflow-hidden overflow-y-auto">
-        <nav className="flex  items-center justify-between h-10 px-4 border-b py-1">
+        <nav className="flex  items-center justify-between h-10 px-4 bg-white/60 backdrop-blur-md fixed top-0 left-0 w-full  py-1 md:h-16 ">
           <Link href={"/"} className="font-bold text-lg">
             Petly
           </Link>
-          <ul className="flex items-center space-x-4">
-            <li>
+          <ul className="flex items-center h-full space-x-6 md:flex-row-reverse">
+            <li className="md:ml-6">
               <SearchMenu />
             </li>
             <li className="md:hidden">
               <Menu />
             </li>
-            <li className="hidden md:inline-flex"></li>
-            <li className="hidden md:inline-flex"></li>
-            <li className="hidden md:inline-flex"></li>
-            <li className="hidden md:inline-flex"></li>
+            <li className="hidden md:inline-flex">
+              <Link href={"/"}>Health</Link>
+            </li>
+            <li className="hidden md:inline-flex">
+              <Link href={"/"}>Toys</Link>
+            </li>
+            <li className="hidden md:inline-flex">
+              <Link href={"/"}>Food and Treats</Link>
+            </li>
+            <li className="hidden md:inline-flex">
+              <Link href={"/"}>Home</Link>
+            </li>
           </ul>
         </nav>
         {children}

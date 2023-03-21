@@ -24,9 +24,9 @@ export default function Menu() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ x: 50 }}
+            initial={{ x: 600 }}
             animate={{ x: 0 }}
-            exit={{ x: 50 }}
+            exit={{ x: 600 }}
             transition={{ duration: 0.4 }}
             className="absolute top-0 right-0 h-screen w-96 bg-white shadow-lg p-6"
           ></motion.div>
