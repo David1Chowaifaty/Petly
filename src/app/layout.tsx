@@ -1,4 +1,7 @@
+import Link from "next/link";
 import "./globals.css";
+import Menu from "./components/Menu";
+import SearchMenu from "./components/SearchMenu";
 
 export const metadata = {
   title: "Petly",
@@ -13,7 +16,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="overflow-hidden overflow-y-auto">
+        <nav className="flex  items-center justify-between h-10 px-4 border-b py-1">
+          <Link href={"/"} className="font-bold text-lg">
+            Petly
+          </Link>
+          <ul className="flex items-center space-x-4">
+            <li>
+              <SearchMenu />
+            </li>
+            <li className="md:hidden">
+              <Menu />
+            </li>
+            <li className="hidden md:inline-flex"></li>
+            <li className="hidden md:inline-flex"></li>
+            <li className="hidden md:inline-flex"></li>
+            <li className="hidden md:inline-flex"></li>
+          </ul>
+        </nav>
+        {children}
+      </body>
     </html>
   );
 }
