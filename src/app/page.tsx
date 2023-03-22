@@ -15,35 +15,35 @@ export default function Home() {
         </p>
         <Link
           href="/"
-          className="rounded-lg bg-[#10B8FF] text-white font-medium py-1.5 px-10
+          className="rounded-lg bg-[#10B8FF] text-black font-medium py-1.5 px-10
          ring-offset-2 ring-[#10B8FF] hover:bg-[#1990c3] active:ring
         "
         >
           Shop Now
         </Link>
-        <Link href="/" className="hover:underline underline-offset-2">
+        <Link href="/toys" className="hover:underline underline-offset-2">
           Learn more
         </Link>
-        <div className="flex flex-wrap">
+        <div className="relative w-full h-[40vh]">
           <Image
             src={require("./assets/hero-0.png")}
             alt=""
-            className="h-16 w-9"
+            className="h-36 w-28 absolute top-[50%] translate-y-[-50%] left-4"
           />
           <Image
             src={require("./assets/hero-1.png")}
             alt=""
-            className="h-16 w-9"
+            className="h-36 w-28 absolute right-4 top-[50%] translate-y-[-50%]"
           />
           <Image
             src={require("./assets/hero-2.png")}
             alt=""
-            className="h-16 w-9"
+            className="h-36 w-28 absolute bottom-4 left-[65%] translate-x-[-65%]"
           />
           <Image
             src={require("./assets/hero-3.png")}
             alt=""
-            className="h-16 w-9"
+            className="h-36 w-28 absolute top-4 left-[35%] translate-x-[-35%]"
           />
         </div>
       </section>

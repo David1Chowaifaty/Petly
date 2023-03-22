@@ -2,7 +2,6 @@ import Link from "next/link";
 import "./globals.css";
 import Menu from "./components/Menu";
 import SearchMenu from "./components/SearchMenu";
-import Logo from "./assets/logo_transparent.png";
 import Image from "next/image";
 export const metadata = {
   title: "Petly",
@@ -20,7 +19,11 @@ export default function RootLayout({
       <body className="overflow-hidden overflow-y-auto">
         <nav className="flex  items-center justify-between h-10 px-4 bg-white/60 backdrop-blur-md fixed top-0 left-0 w-full  py-2 md:h-16 ">
           <Link href={"/"} className="font-bold text-lg">
-            <Image src={Logo} alt="logo" width={116} />
+            <Image
+              src={require("./assets/logo_transparent.png")}
+              alt="logo"
+              width={116}
+            />
           </Link>
           <ul className="flex items-center h-full space-x-6 md:flex-row-reverse">
             <li className="md:ml-6">

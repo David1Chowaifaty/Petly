@@ -33,7 +33,7 @@ export default function AccordionSection() {
     return () => document.removeEventListener("click", onClick);
   }, []);
   return (
-    <div className="px-4">
+    <div className="px-4 flex flex-col items-center">
       <div ref={accRef} className="flex flex-col space-y-2 divide-y w-96">
         <LayoutGroup>
           {data.map((item, index) => (
