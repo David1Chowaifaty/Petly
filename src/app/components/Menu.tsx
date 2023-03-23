@@ -28,7 +28,7 @@ export default function Menu() {
         {open && (
           <motion.div
             transition={{ duration: 0.4 }}
-            className="absolute top-10 border-t right-0 h-screen w-full space-y-10 bg-white shadow-lg p-6 z-50"
+            className="absolute top-14 border-t right-0 h-screen w-full space-y-10 bg-white shadow-lg p-6 z-50"
           >
             <form className="mx-auto w-full py-4" onReset={() => setValue("")}>
               <SearchInput
