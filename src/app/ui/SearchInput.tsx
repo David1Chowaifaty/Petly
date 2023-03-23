@@ -8,18 +8,17 @@ export default function SearchInput({ ...props }: SearchInputProps) {
   const { value } = props;
   return (
     <div
-      className={`w-[300px] md:w-[600px] flex items-center px-4 py-1.5 rounded-lg border-2 border-slate-200 ring-sky-400/30 ring-offset-2 ${
+      className={`w-full md:w-[600px] flex items-center px-4 py-1.5 rounded-lg border-2 border-gray-300 bg-gray-100/60 ring-blue-300 ring-offset-2 ${
         focused && "ring md:ring-0"
       }`}
     >
-      {value === "" && (
-        <label htmlFor="search">
-          <MagnifyingGlassIcon
-            className="h-5 w-5  stroke-gray-400 "
-            strokeWidth={2}
-          />
-        </label>
-      )}
+      <label htmlFor="search">
+        <MagnifyingGlassIcon
+          className="h-5 w-5  stroke-gray-400 "
+          strokeWidth={2}
+        />
+      </label>
+
       <input
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
@@ -31,9 +30,12 @@ export default function SearchInput({ ...props }: SearchInputProps) {
         {...props}
       />
       {value !== "" && (
-        <button type="reset">
+        <button type="reset" className="cursor-default">
           <p className="sr-only">clear search</p>
-          <XMarkIcon className="h-5 w-5  stroke-gray-400 " strokeWidth={2} />
+          <XMarkIcon
+            className="h-5 w-5  text-gray-400 hover:text-blue-400 active:scale-110"
+            strokeWidth={2}
+          />
         </button>
       )}
     </div>

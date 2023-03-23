@@ -1,8 +1,7 @@
 import Link from "next/link";
 import "./globals.css";
 import Menu from "./components/Menu";
-import SearchMenu from "./components/SearchMenu";
-import Image from "next/image";
+import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 export const metadata = {
   title: "Petly",
   description:
@@ -17,18 +16,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="overflow-hidden overflow-y-auto">
-        <nav className="flex  items-center justify-between h-10 px-4 bg-white/60 backdrop-blur-md fixed top-0 left-0 w-full  py-2 md:h-16 ">
-          <Link href={"/"} className="font-bold text-lg">
-            <Image
-              src={require("./assets/logo_transparent.png")}
-              alt="logo"
-              width={116}
-            />
+        <nav className="flex  items-center justify-between h-10 px-4  bg-white/60  backdrop-blur-md sticky top-0 left-0 w-full  py-2 md:h-16 z-40 md:space-x-4">
+          <Link
+            href={"/"}
+            className="font-bold text-lg order-2 md:order-1 md:flex-1"
+          >
+            Petly
           </Link>
-          <ul className="flex items-center h-full space-x-6 md:flex-row-reverse">
-            <li className="md:ml-6">
-              <SearchMenu />
-            </li>
+          <ul className="flex items-center h-full space-x-6 md:flex-row-reverse order-1 md:order-2">
             <li className="md:hidden">
               <Menu />
             </li>
@@ -45,6 +40,9 @@ export default function RootLayout({
               <Link href={"/"}>Home</Link>
             </li>
           </ul>
+          <Link href="/cart" className="order-3">
+            <ShoppingBagIcon className="h-6 w-6" />
+          </Link>
         </nav>
         {children}
       </body>

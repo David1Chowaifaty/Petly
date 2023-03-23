@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer {
+  .link {
+    @apply hover:text-blue-400;
+  }
+}
