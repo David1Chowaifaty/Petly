@@ -8,9 +8,8 @@ export default function SearchInput({ ...props }: SearchInputProps) {
   const { value } = props;
   return (
     <div
-      className={`w-full flex items-center px-4 py-1.5  rounded-lg border-2 border-gray-300 bg-gray-50/30 ring-blue-100 hover:ring ${
-        focused && "ring border-blue-300 "
-      } lg:py-1`}
+      className={`w-full flex items-center px-4 py-1.5  rounded-lg border-2  bg-gray-50/30 ring-blue-100 hover:ring 
+      ${focused ? "ring border-blue-300" : "border-gray-300"} lg:py-1`}
     >
       <label htmlFor="search">
         <MagnifyingGlassIcon

@@ -3,6 +3,8 @@ import "./globals.css";
 import Menu from "./components/Menu";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import SearchMenu from "./components/SearchMenu";
+import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
+import NewsLetter from "./components/NewsLetter";
 export const metadata = {
   title: "Petly",
   description:
@@ -49,6 +51,44 @@ export default function RootLayout({
           </Link>
         </nav>
         {children}
+        <footer className="w-full bg-[#F3F3F3] px-6  lg:px-20 ">
+          <div className="flex flex-col items-center space-y-7 py-6 md:flex-row md:justify-around border-b md:space-y-0 border-gray-300">
+            <section className="flex flex-col w-full items-center space-y-5 md:items-start max-w-xs">
+              <h1 className="font-bold text-2xl">Petly</h1>
+              <h2>Leave your pet in safe hands</h2>
+              <div className="flex items-center justify-center space-x-6 w-full md:justify-start">
+                <span className="p-2 rounded-lg bg-gray-50 cursor-pointer text-gray-600">
+                  <FaInstagram size={18} />
+                </span>
+                <span className="p-2 rounded-lg bg-gray-50 cursor-pointer text-gray-600">
+                  <FaFacebookF size={18} />
+                </span>
+                <span className="p-2 rounded-lg bg-gray-50 cursor-pointer text-gray-600">
+                  <FaTwitter size={18} />
+                </span>
+              </div>
+            </section>
+            <section className="flex flex-col w-full items-center space-y-5 md:items-start lg:w-[25vw]">
+              <h1 className="font-bold text-xl">Quick Links</h1>
+              <div className="grid gap-2 grid-cols-2 w-full  justify-items-center md:justify-items-start">
+                <Link href={"/"}>About us</Link>
+                <Link href={"/"}>Training</Link>
+                <Link href={"/"}>Toys</Link>
+                <Link href={"/"}>Grooming</Link>
+                <Link href={"/"}>Services</Link>
+              </div>
+            </section>
+            <section className="space-y-5 w-full text-center">
+              <h1 className="font-bold text-xl">Join our news letter</h1>
+              <NewsLetter />
+            </section>
+          </div>
+          <div>
+            <h3 className="text-center py-6 text-sm">
+              @2023 petly | All Rights Reserved
+            </h3>
+          </div>
+        </footer>
       </body>
     </html>
   );

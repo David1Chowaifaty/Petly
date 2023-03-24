@@ -37,8 +37,11 @@ export default function AccordionSection() {
     return () => document.removeEventListener("click", onClick);
   }, []);
   return (
-    <div className="px-4 flex flex-col items-center">
-      <div ref={accRef} className="flex flex-col space-y-2 divide-y w-96">
+    <div className="px-4 flex flex-col items-center sm:flex-row sm:justify-around">
+      <div
+        ref={accRef}
+        className="flex flex-col space-y-2 divide-y w-full sm:w-96"
+      >
         <LayoutGroup>
           {data.map((item, index) => (
             <Accordion
@@ -52,10 +55,19 @@ export default function AccordionSection() {
             />
           ))}
         </LayoutGroup>
-        {openIndex > -1 && (
+      </div>
+      <div className="hidden sm:inline-flex">
+        {openIndex > -1 ? (
           <Image
             src={data[openIndex].image}
             alt={data[openIndex].title}
+            width={200}
+            height={300}
+          />
+        ) : (
+          <Image
+            src={"/second_section/second_section_main.jpg"}
+            alt=""
             width={200}
             height={300}
           />
