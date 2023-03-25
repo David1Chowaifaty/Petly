@@ -1,10 +1,10 @@
 import Link from "next/link";
 import "./globals.css";
-import Menu from "./components/Menu";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import SearchMenu from "./components/SearchMenu";
 import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
 import NewsLetter from "./components/NewsLetter";
+import MenuLinks from "./components/MenuLinks";
 export const metadata = {
   title: "Petly",
   description:
@@ -26,23 +26,7 @@ export default function RootLayout({
           >
             Petly
           </Link>
-          <ul className="flex items-center h-full space-x-6 md:flex-row-reverse order-1 md:order-2">
-            <li className="md:hidden">
-              <Menu />
-            </li>
-            <li className="hidden md:inline-flex">
-              <Link href={"/"}>Health</Link>
-            </li>
-            <li className="hidden md:inline-flex">
-              <Link href={"/"}>Toys</Link>
-            </li>
-            <li className="hidden md:inline-flex">
-              <Link href={"/"}>Food and Treats</Link>
-            </li>
-            <li className="hidden md:inline-flex">
-              <Link href={"/"}>Home</Link>
-            </li>
-          </ul>
+          <MenuLinks />
           <div className="hidden md:block order-3 w-48">
             <SearchMenu />
           </div>
@@ -71,12 +55,24 @@ export default function RootLayout({
             <section className="flex flex-col w-full items-center space-y-5 md:items-start lg:w-[25vw]">
               <h1 className="font-bold text-xl">Quick Links</h1>
               <div className="grid gap-2 grid-cols-2 w-full  justify-items-center md:justify-items-start">
-                <Link href={"/"}>About us</Link>
-                <Link href={"/"}>Training</Link>
-                <Link href={"/"}>Toys</Link>
-                <Link href={"/"}>Grooming</Link>
-                <Link href={"/"}>Services</Link>
-                <Link href={"/"}>Health</Link>
+                <Link href={"/"} className="hover:underline underline-offset-1">
+                  About us
+                </Link>
+                <Link href={"/"} className="hover:underline underline-offset-1">
+                  Training
+                </Link>
+                <Link href={"/"} className="hover:underline underline-offset-1">
+                  Toys
+                </Link>
+                <Link href={"/"} className="hover:underline underline-offset-1">
+                  Grooming
+                </Link>
+                <Link href={"/"} className="hover:underline underline-offset-1">
+                  Services
+                </Link>
+                <Link href={"/"} className="hover:underline underline-offset-1">
+                  Health
+                </Link>
               </div>
             </section>
             <section className="space-y-5 text-center md:text-start w-full lg:w-auto">

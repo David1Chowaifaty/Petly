@@ -2,7 +2,13 @@ import Link from "next/link";
 import AccordionSection from "./components/AccordionSection";
 import Image from "next/image";
 import { sitters } from "./data";
-import { PlusIcon } from "@heroicons/react/24/outline";
+import {
+  CalendarIcon,
+  ClockIcon,
+  PaperAirplaneIcon,
+  PlusIcon,
+} from "@heroicons/react/24/outline";
+import HomeCard from "./components/HomeCard";
 export default function Home() {
   return (
     <main className="space-y-40">
@@ -32,7 +38,7 @@ export default function Home() {
             height={300}
             src={`/hero.png`}
             alt=""
-            className={`scale-[0.8] rounded-sm md:w-auto sm:scale-[0.5] mt-[50px] lg:mt-0 lg:scale-[0.7]`}
+            className={`scale-[0.8] rounded-sm md:w-auto sm:scale-[0.5] mt-[100px] lg:mt-0 lg:scale-[0.7]`}
           />
         </div>
       </section>
@@ -97,7 +103,7 @@ export default function Home() {
           height={200}
           className="rounded-md hidden lg:block"
         />
-        <div className="space-y-5">
+        <div className="space-y-5 self-start">
           <h1 className="hidden text-2xl font-extrabold mb-6 md:block md:text-3xl">
             Our Sitters Are Thoroughly Vetted
           </h1>
@@ -117,7 +123,31 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section></section>
+      <section>
+        <h1 className="text-2xl font-extrabold mb-6 max-w-sm text-center mx-auto lg:text-3xl">
+          Consistent Availability Flexible Scheduling
+        </h1>
+        <div className="flex items-center justify-around  py-6">
+          <HomeCard
+            title="Last minute request"
+            description="Find yourself heading out of town expectedly? There is no need to stress about finding care for your pet"
+          >
+            <PaperAirplaneIcon className="h-6 w-6 text-sky-500" />
+          </HomeCard>
+          <HomeCard
+            title="Schedule Changes"
+            description="Want to extend your vaction an extra day or two? That's no problem with us.Spending another day"
+          >
+            <ClockIcon className="h-6 w-6 text-orange-500" />
+          </HomeCard>
+          <HomeCard
+            title="Cancellations"
+            description="Don't need out services after all? We are flexible in regard to our cancellation policies"
+          >
+            <CalendarIcon className="h-6 w-6 text-yellow-500" />
+          </HomeCard>
+        </div>
+      </section>
     </main>
   );
 }
