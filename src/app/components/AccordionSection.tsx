@@ -22,6 +22,18 @@ const data = [
       "Our puppy day care services are designed to keep your furry friend active and engaged while you're away. Our team of trained professionals will provide a safe and fun environment for your puppy to socialize, exercise and learn new skills. With plenty of playtime and cuddles, your puppy will have a blast at Petly's day care. Trust us to take care of your furry baby while you take care of your day-to-day activities.",
     image: "/second_section/day_care.jpg",
   },
+  {
+    title: "Training Trough Goodpup",
+    description:
+      "At Petly, we believe that a well-trained pet is a happy pet. That's why we've partnered with Goodpup, a leading online dog training platform, to offer you access to top-quality training programs. Goodpup's team of expert trainers uses positive reinforcement techniques to help you train your dog in a way that's fun and effective. From obedience training to behavioral modification, you can trust Goodpup to help you create a happy and well-behaved pet. Sign up for training through Goodpup today and watch your furry friend thrive!",
+    image: "/second_section/day_care.jpg",
+  },
+  {
+    title: "Pets House Sitting",
+    description:
+      "Going out of town? Leave your pets in the comfort of their own home with our house sitting services. Our experienced pet sitters will make sure your furry friends are fed, walked, and given lots of attention while you're away. We'll also keep an eye on your home, ensuring that everything is secure and in order. Enjoy your time away with peace of mind knowing that your pets and home are being taken care of by Petly's reliable house sitting team.",
+    image: "/second_section/day_care.jpg",
+  },
 ];
 export default function AccordionSection() {
   const accRef = useRef<HTMLDivElement>(null);

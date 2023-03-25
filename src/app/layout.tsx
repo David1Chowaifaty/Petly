@@ -52,7 +52,7 @@ export default function RootLayout({
         </nav>
         {children}
         <footer className="w-full bg-[#F3F3F3] px-6  lg:px-20 ">
-          <div className="flex flex-col items-center space-y-7 py-6 md:flex-row md:justify-around border-b md:space-y-0 border-gray-300">
+          <div className="flex flex-col items-center space-y-7 py-6 md:flex-row md:justify-around border-b md:space-y-0 border-gray-300 md:flex-wr">
             <section className="flex flex-col w-full items-center space-y-5 md:items-start max-w-xs">
               <h1 className="font-bold text-2xl">Petly</h1>
               <h2>Leave your pet in safe hands</h2>
@@ -78,7 +78,7 @@ export default function RootLayout({
                 <Link href={"/"}>Services</Link>
               </div>
             </section>
-            <section className="space-y-5 w-full text-center">
+            <section className="space-y-5 text-center md:text-start w-full lg:w-auto">
               <h1 className="font-bold text-xl">Join our news letter</h1>
               <NewsLetter />
             </section>

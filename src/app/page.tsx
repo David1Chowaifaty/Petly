@@ -17,7 +17,7 @@ export default function Home() {
           <div className="space-y-10 flex flex-col  items-center w-full lg:flex-row lg:space-y-0 lg:justify-between">
             <Link
               href="/"
-              className="rounded-lg bg-[#10B8FF] text-black font-medium py-1.5 px-10
+              className="rounded-lg bg-[#10B8FF] text-white font-medium py-1.5 px-10
          ring-offset-2 ring-[#10B8FF] hover:bg-[#1990c3] active:ring
         "
             >

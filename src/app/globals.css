@@ -6,4 +6,7 @@
   .link {
     @apply hover:text-blue-400;
   }
+  .primary_btn {
+    @apply bg-sky-400 px-4 py-1.5 rounded-lg text-white font-medium ring-sky-200 hover:bg-sky-500 active:ring;
+  }
 }
