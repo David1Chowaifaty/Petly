@@ -76,6 +76,7 @@ export default function RootLayout({
                 <Link href={"/"}>Toys</Link>
                 <Link href={"/"}>Grooming</Link>
                 <Link href={"/"}>Services</Link>
+                <Link href={"/"}>Health</Link>
               </div>
             </section>
             <section className="space-y-5 text-center md:text-start w-full lg:w-auto">

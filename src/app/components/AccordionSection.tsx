@@ -49,7 +49,7 @@ export default function AccordionSection() {
     return () => document.removeEventListener("click", onClick);
   }, []);
   return (
-    <div className="px-4 flex flex-col items-center sm:flex-row sm:justify-around">
+    <div className="px-4 flex w-full flex-col items-center sm:flex-row sm:justify-around">
       <div
         ref={accRef}
         className="flex flex-col space-y-2 divide-y w-full sm:w-96"
