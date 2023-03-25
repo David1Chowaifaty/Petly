@@ -1,10 +1,12 @@
 import Link from "next/link";
 import AccordionSection from "./components/AccordionSection";
 import Image from "next/image";
+import { sitters } from "./data";
+import { PlusIcon } from "@heroicons/react/24/outline";
 export default function Home() {
   return (
-    <main className="space-y-7">
-      <section className="h-screen flex flex-col items-center space-y-10 py-4 lg:flex-row lg:justify-around lg:items-start lg:mt-[20vh]">
+    <main className="space-y-40">
+      <section className="flex flex-col items-center space-y-10 py-4 lg:flex-row lg:space-y-0 lg:justify-around lg:items-start lg:mt-[20vh]">
         <div className="flex flex-col items-center space-y-10 lg:items-start">
           <h1 className="font-extrabold max-w-sm text-3xl text-center md:text-4xl lg:text-start">
             Discover the Joy of Pet Ownership with Petly
@@ -24,17 +26,14 @@ export default function Home() {
             Shop Now
           </Link>
         </div>
-        <div className="w-full h-[40vh] grid grid-cols-4 justify-items-center lg:w-[50vw]">
-          {Array.from(Array(4), (_, i) => i).map((i) => (
-            <Image
-              key={"heroImage" + i}
-              width={112}
-              height={114}
-              src={`/hero-${i}.png`}
-              alt=""
-              className={`h-36 w-28 ${i % 2 != 0 && "self-center"}`}
-            />
-          ))}
+        <div className="w-full h-[40vh] lg:w-[50vw] flex justify-center items-center">
+          <Image
+            width={1050}
+            height={300}
+            src={`/hero.png`}
+            alt=""
+            className={`scale-[0.8] rounded-sm md:w-auto sm:scale-[0.5] mt-[50px] lg:mt-0 lg:scale-[0.7]`}
+          />
         </div>
       </section>
       <section className="h-screen bg-yellow-300 flex flex-col p-6 justify-around items-center lg:rounded-lg lg:h-56 lg:mx-7 lg:flex-row lg:space-y-0">
@@ -84,10 +83,41 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <section className="h-screen flex lg:items-center w-full">
+      <section className="flex flex-col lg:flex-row lg:items-center w-full px-4 space-y-6 md:space-y-0">
         <AccordionSection />
       </section>
-      <section className="h-screen"></section>
+      <section className="flex flex-col items-center space-y-5 px-4 lg:flex-row lg:justify-around">
+        <h1 className="text-2xl font-extrabold mb-6 self-start md:hidden">
+          Our Sitters Are Thoroughly Vetted
+        </h1>
+        <Image
+          src="/pink_dog.webp"
+          alt="sitting service"
+          width={250}
+          height={200}
+          className="rounded-md hidden lg:block"
+        />
+        <div className="space-y-5">
+          <h1 className="hidden text-2xl font-extrabold mb-6 md:block md:text-3xl">
+            Our Sitters Are Thoroughly Vetted
+          </h1>
+          <p>
+            We do our due diligence when hiring to make sure every single one of
+            our sitter is not only safe.
+          </p>
+          <div className="space-y-3">
+            {sitters.map((item, index) => (
+              <div key={item + index} className="flex items-center space-x-4">
+                <span className="p-1 rounded-full border">
+                  <PlusIcon className="h-4 w-4" />
+                </span>
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section></section>
     </main>
   );
 }
