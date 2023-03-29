@@ -12,17 +12,6 @@ export default async function page({ params }: PageProps) {
   return (
     <div className="h-screen">
       <h1>{food?.name}</h1>
-      <div className="flex items-center w-full flex-wrap gap-5">
-        {food?.images.map((image: string, index: number) => (
-          <Image
-            src={image}
-            alt=""
-            key={"image_" + image + "_" + index}
-            height={300}
-            width={200}
-          />
-        ))}
-      </div>
       <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
         <div className="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
           <Image

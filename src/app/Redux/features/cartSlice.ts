@@ -3,6 +3,10 @@ export interface CartItemType {
   id: string;
   amount: number;
   name: string;
+  quantity: string;
+  images: string[];
+  price: string;
+  description: string;
 }
 type CounterState = {
   items: CartItemType[];
@@ -27,7 +31,7 @@ const cartSlice = createSlice({
         let amount = state.items[i].amount + 1;
         state.items[i] = { ...state.items[i], amount: amount };
       } else {
-        state.items.push({ ...action.payload, amount: 1 });
+        state.items.push(action.payload);
       }
     },
     removeFromCart(state, action) {

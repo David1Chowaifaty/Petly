@@ -2,6 +2,15 @@ import React from "react";
 import { getToysData } from "../utils/getData";
 import Card from "../components/Card";
 
+export async function generateStaticParams() {
+  const toys = await getToysData();
+  return toys.map((toy) => {
+    return {
+      toy,
+    };
+  });
+}
+export const revalidate = 60;
 export default async function app() {
   const toys = await getToysData();
   return (

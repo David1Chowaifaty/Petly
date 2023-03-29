@@ -1,21 +1,28 @@
 "use client";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import React from "react";
-import { useAppSelector } from "../Redux/hooks";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../Redux/hooks";
+import { afterRefresh } from "../Redux/features/cartSlice";
 
 export default function CartButton() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    let cart = sessionStorage.getItem("cart");
+    if (cart !== null) {
+      dispatch(afterRefresh(JSON.parse(cart)));
+    }
+  }, [dispatch]);
   const items = useAppSelector((state) => state.cart.items);
+  useEffect(() => {
+    sessionStorage.setItem("cart", JSON.stringify(items));
+  }, [items]);
   return (
-    <div className="relative h-6 w-6">
-      {items.length > 0 && (
-        <p className=" absolute -top-4 -right-2 bg-gray-200/50 rounded-full h-4 w-4 flex items-center justify-center select-none">
-          {items.length}
-        </p>
-      )}
+    <div className="flex items-center gap-1 h-6 w-6">
       <Link href="/cart">
         <ShoppingBagIcon className="h-6 w-6" />
       </Link>
+      {items.length > 0 && <p className="select-none">{items.length}</p>}
     </div>
   );
 }

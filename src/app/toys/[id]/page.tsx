@@ -1,3 +1,4 @@
+import ProductClient from "@/app/components/ProductClient";
 import { getSingleDocument } from "@/app/utils/getData";
 import Image from "next/image";
 import React from "react";
@@ -10,9 +11,9 @@ export default async function page({ params }: PageProps) {
   const { id } = params;
   const toy = await getSingleDocument("toys", id);
   return (
-    <div className="h-screen">
+    <div className="h-screen p-6">
       <h1>{toy?.name}</h1>
-      <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+      {/* <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
         <div className="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
           <Image
             width={800}
@@ -51,7 +52,8 @@ export default async function page({ params }: PageProps) {
             className="h-full w-full object-cover object-center"
           />
         </div>
-      </div>
+      </div> */}
+      <ProductClient data={toy!} id={id} />
     </div>
   );
 }
