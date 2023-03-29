@@ -36,20 +36,34 @@ export default function Menu() {
                 onChange={(e) => setValue(e.target.value)}
               />
             </form>
-            <ul className="space-y-5">
-              <li className="link" onClick={() => setOpen(false)}>
-                <Link href={"/"}>Home</Link>
-              </li>
-              <li className="link" onClick={() => setOpen(false)}>
-                <Link href={"/"}>Food and Treats</Link>
-              </li>
-              <li className="link" onClick={() => setOpen(false)}>
-                <Link href={"/"}>Toys</Link>
-              </li>
-              <li className="link" onClick={() => setOpen(false)}>
-                <Link href={"/"}>Health</Link>
-              </li>
-            </ul>
+            <div className="flex flex-col gap-5">
+              <Link href={"/"} onClick={() => setOpen(false)} className="link">
+                Home
+              </Link>
+              <Link
+                href={"/foodandtreats"}
+                onClick={() => setOpen(false)}
+                className="link"
+              >
+                Food and Treats
+              </Link>
+
+              <Link
+                href={"/toys"}
+                onClick={() => setOpen(false)}
+                className="link"
+              >
+                Toys
+              </Link>
+
+              <Link
+                href={"/health"}
+                onClick={() => setOpen(false)}
+                className="link"
+              >
+                Health
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
