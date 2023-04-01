@@ -13,7 +13,7 @@ export default function NewsLetter() {
       />
       <button
         type="submit"
-        className="bg-sky-400 px-4 py-1.5 rounded-lg text-white font-medium ring-sky-200 hover:bg-sky-500 active:ring"
+        className="bg-sky-400 px-4 py-1.5 rounded-lg text-white font-medium ring-sky-200 hover:bg-opacity-80 active:ring"
       >
         Join us
       </button>

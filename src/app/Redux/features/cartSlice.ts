@@ -7,6 +7,7 @@ export interface CartItemType {
   images: string[];
   price: string;
   description: string;
+  newAmount: number | 0;
 }
 type CounterState = {
   items: CartItemType[];
@@ -28,29 +29,31 @@ const cartSlice = createSlice({
         const i = state.items.findIndex(
           (item) => item.id === action.payload.id
         );
-        let amount = state.items[i].amount + 1;
-        state.items[i] = { ...state.items[i], amount: amount };
+        let amount = state.items[i].amount + action.payload.amount;
+        state.items[i] = { ...state.items[i], amount };
       } else {
         state.items.push(action.payload);
       }
     },
     removeFromCart(state, action) {
-      const i = state.items.findIndex((item) => item.id === action.payload.id);
-      let amount = state.items[i].amount - 1;
-      if (amount > 0) {
-        state.items[i] = { ...state.items[i], amount: amount };
-      } else {
-        const filterdCart = state.items.filter((item) => {
-          return item.id !== action.payload.id;
-        });
-        state.items = filterdCart;
-      }
+      let newCart = state.items.filter(({ id }) => id !== action.payload.id);
+      state.items = [...newCart];
     },
     afterRefresh(state, action) {
       state.items = [...action.payload];
     },
+    updateAmount(state, action) {
+      let i = action.payload.index;
+      let amount = action.payload.newAmount;
+      state.items[i] = {
+        ...state.items[i],
+        newAmount: amount,
+      };
+      //state.items = [...oldItems];
+    },
   },
 });
 
-export const { addToCart, removeFromCart, afterRefresh } = cartSlice.actions;
+export const { addToCart, removeFromCart, afterRefresh, updateAmount } =
+  cartSlice.actions;
 export default cartSlice.reducer;

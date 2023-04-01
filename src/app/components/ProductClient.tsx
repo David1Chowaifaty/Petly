@@ -14,7 +14,6 @@ export default function ProductClient({
 }) {
   const [counter, setCounter] = useState(0);
   const dispatch = useAppDispatch();
-  console.log({ ...data, ["id"]: id, ["amount"]: counter });
   return (
     <div>
       <div className="flex items-center space-x-4">

@@ -1,9 +1,10 @@
 import React from "react";
+import CheckoutForm from "../components/CheckoutForm";
 
 export default function page() {
   return (
-    <main className="h-screen">
-      <h1>checkout</h1>
+    <main className="h-full">
+      <CheckoutForm />
     </main>
   );
 }

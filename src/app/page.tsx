@@ -25,8 +25,8 @@ export default function Home() {
 
           <Link
             href="/"
-            className="rounded-lg bg-[#10B8FF] text-white font-medium py-1.5 px-10
-         ring-offset-2 ring-[#10B8FF] hover:bg-[#1990c3] active:ring
+            className="rounded-lg bg-sky-500 text-white font-medium py-1.5 px-10
+         ring-offset-2 ring-[#10B8FF] hover:bg-opacity-80 active:ring
         "
           >
             Shop Now
