@@ -80,7 +80,7 @@ const ListBox: React.FC<ListBoxProps> = ({ items, onSelect }) => {
       <div>
         <span
           onClick={() => setIsOpen(!isOpen)}
-          className="rounded-md shadow-sm cursor-pointer w-16 md:24 h-7 flex items-center justify-around bg-white dark:bg-gray-800 ring-1 ring-gray-300  text-sm font-medium text-gray-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="rounded-md shadow-sm cursor-pointer w-16 md:24 h-7 flex items-center justify-around bg-white  ring-1 ring-gray-300  text-sm font-medium text-gray-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           id="options-menu"
           aria-haspopup="true"
         >
@@ -96,15 +96,15 @@ const ListBox: React.FC<ListBoxProps> = ({ items, onSelect }) => {
         <ul
           id="menu_scroll"
           ref={listRef}
-          className="absolute left-0 z-30 space-y-1 mt-2 w-64 max-h-60 overflow-y-auto rounded-md shadow-lg p-1 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="absolute left-0 z-30 space-y-1 mt-2 w-64 max-h-60 overflow-y-auto rounded-md shadow-lg p-1 bg-white  ring-1 ring-black ring-opacity-5 focus:outline-none"
           dir="rtld"
         >
           {items.map((item, index) => (
             <li
               key={item}
               className={`${
-                selectedIndex === index ? "bg-sky-100 dark:bg-gray-700" : ""
-              } py-2 pl-3 pr-9 text-sm text-gray-900 rounded-md dark:text-white cursor-default select-none relative hover:bg-sky-50 focus:bg-sky-50 `}
+                selectedIndex === index ? "bg-sky-100 " : ""
+              } py-2 pl-3 pr-9 text-sm text-gray-900 rounded-md cursor-default select-none relative hover:bg-sky-50 focus:bg-sky-50 `}
               onClick={() => handleSelect(item)}
             >
               {item}

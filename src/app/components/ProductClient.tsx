@@ -15,12 +15,12 @@ export default function ProductClient({
   const [counter, setCounter] = useState(0);
   const dispatch = useAppDispatch();
   return (
-    <div>
+    <div className="space-y-6">
       <div className="flex items-center space-x-4">
         <button
           type="button"
           onClick={() => setCounter((prev) => (prev > 0 ? prev - 1 : prev))}
-          className="hover:border p-1 rounded-lg active:border-gray-200 active:border-2 hover:bg-gray-50/50 hover:backdrop-blur-sm"
+          className="active:scale-90 active:text-gray-600 hover:text-gray-700"
         >
           <p className="sr-only">decrement item</p>
           <MinusIcon className="h-5 w-5" strokeWidth={2} />
@@ -31,7 +31,7 @@ export default function ProductClient({
           onClick={() =>
             setCounter((prev) => (data.quantity > prev ? prev + 1 : prev))
           }
-          className="hover:border p-1 rounded-lg active:border-gray-200 active:border-2 hover:bg-gray-50/50 hover:backdrop-blur-sm"
+          className="active:scale-90 active:text-gray-600 hover:text-gray-700"
         >
           <p className="sr-only">encrement item</p>
           <PlusIcon className="h-5 w-5" strokeWidth={2} />
@@ -39,7 +39,8 @@ export default function ProductClient({
       </div>
       <button
         type="button"
-        className="bg-sky-500 text-white px-4 w-96 py-1.5 font-medium rounded-lg hover:bg-opacity-80"
+        disabled={counter === 0}
+        className="bg-sky-400 px-4 h-10 py-1.5 text-center w-full rounded-lg text-white font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw] disabled:bg-sky-300 disabled:cursor-not-allowed"
         onClick={() =>
           dispatch(addToCart({ ...data, ["id"]: id, ["amount"]: counter }))
         }

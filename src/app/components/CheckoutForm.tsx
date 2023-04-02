@@ -1,6 +1,7 @@
 "use client";
 import { FormEvent, useEffect, useState } from "react";
 import CartElement from "./CartElement";
+import { useAppSelector } from "../Redux/hooks";
 
 export default function CheckoutForm() {
   const [address, setAddress] = useState<string>("");
@@ -8,7 +9,7 @@ export default function CheckoutForm() {
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
-
+  const items = useAppSelector((state) => state.cart.items);
   return (
     <div className="grid px-4 gap-3 mt-6 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x py-3">
       <form
@@ -62,7 +63,15 @@ export default function CheckoutForm() {
         <CartElement />
         <button
           type="button"
-          className="bg-sky-400 px-4 h-10 py-1.5 text-center w-full rounded-lg text-white font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw] mt-3"
+          className="bg-sky-400 px-4 h-10 py-1.5 text-center w-full rounded-lg text-white font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw] mt-3 active:scale-95 disabled:bg-sky-300"
+          disabled={
+            address === "" ||
+            apartment === "" ||
+            city === "" ||
+            state === "" ||
+            phone === "" ||
+            items.length === 0
+          }
         >
           Confirm order
         </button>
