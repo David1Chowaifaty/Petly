@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import CartElement from "../components/CartElement";
+import CartElement from "../../components/CartElement";
 
 export default function page() {
   return (

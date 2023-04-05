@@ -1,5 +1,5 @@
 import Link from "next/link";
-import AccordionSection from "./components/AccordionSection";
+import AccordionSection from "../components/AccordionSection";
 import Image from "next/image";
 import { sitters } from "./data";
 import {
@@ -8,7 +8,7 @@ import {
   PaperAirplaneIcon,
   PlusIcon,
 } from "@heroicons/react/24/outline";
-import HomeCard from "./components/HomeCard";
+import HomeCard from "../components/HomeCard";
 export default function Home() {
   return (
     <main className="space-y-40">

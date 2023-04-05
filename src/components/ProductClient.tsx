@@ -8,9 +8,11 @@ import { addToCart } from "../Redux/features/cartSlice";
 export default function ProductClient({
   data,
   id,
+  category,
 }: {
   data: DocumentData;
   id: string;
+  category: string;
 }) {
   const [counter, setCounter] = useState(0);
   const dispatch = useAppDispatch();
@@ -42,7 +44,14 @@ export default function ProductClient({
         disabled={counter === 0}
         className="bg-sky-400 px-4 h-10 py-1.5 text-center w-full rounded-lg text-white font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw] disabled:bg-sky-300 disabled:cursor-not-allowed"
         onClick={() =>
-          dispatch(addToCart({ ...data, ["id"]: id, ["amount"]: counter }))
+          dispatch(
+            addToCart({
+              ...data,
+              ["id"]: id,
+              ["amount"]: counter,
+              category,
+            })
+          )
         }
       >
         Add To Cart

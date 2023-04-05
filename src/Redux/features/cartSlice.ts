@@ -6,8 +6,9 @@ export interface CartItemType {
   quantity: string;
   images: string[];
   price: string;
+  category?: string;
   description: string;
-  newAmount: number | 0;
+  newAmount?: number | 0;
 }
 type CounterState = {
   items: CartItemType[];

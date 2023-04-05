@@ -1,12 +1,12 @@
 import Link from "next/link";
 import "./globals.css";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
-import SearchMenu from "./components/SearchMenu";
+import SearchMenu from "../components/SearchMenu";
 import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
-import NewsLetter from "./components/NewsLetter";
-import MenuLinks from "./components/MenuLinks";
-import Providers from "./Redux/Providers";
-import CartButton from "./ui/CartButton";
+import NewsLetter from "../components/NewsLetter";
+import MenuLinks from "../components/MenuLinks";
+import Providers from "../Redux/Providers";
+import CartButton from "../components/ui/CartButton";
 export const metadata = {
   title: "Petly",
   description:

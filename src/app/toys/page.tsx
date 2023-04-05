@@ -1,6 +1,6 @@
 import React from "react";
-import { getToysData } from "../utils/getData";
-import Card from "../components/Card";
+import { getToysData } from "../../utils/getData";
+import Card from "../../components/Card";
 
 export async function generateStaticParams() {
   const toys = await getToysData();

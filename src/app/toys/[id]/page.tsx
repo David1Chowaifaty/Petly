@@ -1,5 +1,5 @@
-import ProductClient from "@/app/components/ProductClient";
-import { getSingleDocument } from "@/app/utils/getData";
+import ProductClient from "@/components/ProductClient";
+import { getSingleDocument } from "@/utils/getData";
 import Image from "next/image";
 import React from "react";
 interface PageProps {
@@ -11,7 +11,7 @@ export default async function page({ params }: PageProps) {
   const { id } = params;
   const toy = await getSingleDocument("toys", id);
   return (
-    <main className="h-full p-6 space-y-10">
+    <main className="h-screen lg:h-full p-6 space-y-10">
       <h1 className="text-xl font-bold text-gray-800 uppercase lg:hidden">
         {toy?.name}
       </h1>
@@ -65,7 +65,7 @@ export default async function page({ params }: PageProps) {
           </div>
           <p className="text-gray-600">{toy?.description}</p>
 
-          <ProductClient data={toy!} id={id} />
+          <ProductClient data={toy!} id={id} category="toys" />
         </div>
       </div>
     </main>

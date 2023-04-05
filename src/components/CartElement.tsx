@@ -10,7 +10,7 @@ import {
 import { useState, useEffect } from "react";
 import { LayoutGroup, motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
-import Select from "../ui/SelectMenu/Select";
+import Select from "./ui/SelectMenu/Select";
 export default function CartElement() {
   const items = useAppSelector((state) => state.cart.items);
   const dispatch = useAppDispatch();
@@ -146,6 +146,10 @@ export default function CartElement() {
 }
 function calculateTotalPrice(items: CartItemType[]) {
   let total = 0;
-  items.forEach(({ amount, price }) => (total += amount * parseInt(price)));
+  items.forEach(
+    ({ newAmount, amount, price }) =>
+      (total +=
+        (newAmount !== undefined ? newAmount : amount) * parseInt(price))
+  );
   return total;
 }

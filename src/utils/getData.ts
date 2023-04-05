@@ -1,8 +1,7 @@
-import { db } from "../firebase";
+import { db } from "../app/firebase";
 import {
   collection,
   query,
-  where,
   getDocs,
   DocumentData,
   doc,

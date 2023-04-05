@@ -1,7 +1,7 @@
 "use client";
 import { LayoutGroup } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
-import Accordion from "../ui/Accordion";
+import Accordion from "./ui/Accordion";
 import Image from "next/image";
 const data = [
   {

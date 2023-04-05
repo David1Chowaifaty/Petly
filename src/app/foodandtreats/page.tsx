@@ -1,6 +1,6 @@
 import React from "react";
-import { getFoodData } from "../utils/getData";
-import Card from "../components/Card";
+import { getFoodData } from "../../utils/getData";
+import Card from "../../components/Card";
 
 export default async function page() {
   const food = await getFoodData();

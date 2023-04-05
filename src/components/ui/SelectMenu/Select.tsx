@@ -23,13 +23,11 @@ const ListBox: React.FC<ListBoxProps> = ({ items, onSelect }) => {
   const handleClick = (event: MouseEvent) => {
     if (ref.current && ref.current.contains(event.target as Node)) {
       setIsOpen(true);
-      setSelectedIndex(0);
       if (ref.current) {
         ref.current.focus();
       }
     } else {
       setIsOpen(false);
-      setSelectedIndex(0);
     }
   };
 
@@ -44,12 +42,16 @@ const ListBox: React.FC<ListBoxProps> = ({ items, onSelect }) => {
         setSelectedIndex((selectedIndex) =>
           selectedIndex === null
             ? 0
+            : selectedIndex === items.length - 1
+            ? 0
             : Math.min(selectedIndex + 1, items.length - 1)
         );
       } else if (event.key === "ArrowUp") {
         event.preventDefault();
         setSelectedIndex((selectedIndex) =>
           selectedIndex === null
+            ? items.length - 1
+            : selectedIndex === 0
             ? items.length - 1
             : Math.max(selectedIndex - 1, 0)
         );
@@ -105,7 +107,10 @@ const ListBox: React.FC<ListBoxProps> = ({ items, onSelect }) => {
               className={`${
                 selectedIndex === index ? "bg-sky-100 " : ""
               } py-2 pl-3 pr-9 text-sm text-gray-900 rounded-md cursor-default select-none relative hover:bg-sky-50 focus:bg-sky-50 `}
-              onClick={() => handleSelect(item)}
+              onClick={() => {
+                handleSelect(item);
+                setSelectedIndex(index);
+              }}
             >
               {item}
             </li>

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import SearchInput from "../ui/SearchInput";
+import SearchInput from "./ui/SearchInput";
 
 export default function SearchMenu() {
   const [value, setValue] = useState<string>("");

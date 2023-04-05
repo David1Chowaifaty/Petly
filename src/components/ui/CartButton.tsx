@@ -2,8 +2,8 @@
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../Redux/hooks";
-import { afterRefresh } from "../Redux/features/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
+import { afterRefresh } from "../../Redux/features/cartSlice";
 
 export default function CartButton() {
   const dispatch = useAppDispatch();
