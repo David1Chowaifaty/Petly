@@ -7,21 +7,28 @@ import NewsLetter from "../components/NewsLetter";
 import MenuLinks from "../components/MenuLinks";
 import Providers from "../Redux/Providers";
 import CartButton from "../components/ui/CartButton";
+import { authOptions } from "../pages/api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
+import SessionProvider from "@/components/SessionProvider";
+
 export const metadata = {
   title: "Petly",
   description:
     "Welcome to Petly, your go-to resource for all things pertaining to your pet. To keep your furry buddy happy and healthy, browse our extensive range of premium pet food and toys. We also supply qualified specialists with our expert medical consulting services for animals. For orders over $50, shipping is free right now. Provide your pet the love and attention they deserve by shopping right away.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+  console.log(session);
   return (
     <html lang="en">
       <body className="overflow-hidden overflow-y-auto">
-        <Providers>
+        <Providers session={session}>
+          {session !== null && session.user?.email}
           <nav className="flex items-center justify-between h-14 px-4  bg-white/60  backdrop-blur-md sticky top-0 left-0 w-full  py-2 md:h-16 z-40 md:space-x-4 lg:h-20">
             <Link
               href={"/"}

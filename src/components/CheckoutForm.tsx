@@ -12,19 +12,19 @@ export default function CheckoutForm() {
   const [phone, setPhone] = useState<string>("");
   const items = useAppSelector((state) => state.cart.items);
   return (
-    <div className="grid px-4 gap-3 mt-6 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x py-3">
-      <form
-        className="space-y-5"
-        onSubmit={(e: FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          sendOrder(e, address, apartment, city, state, phone, items);
-        }}
-      >
+    <form
+      className="grid px-4 py-3 gap-3 mt-6  divide-y lg:grid-cols-2 lg:divide-y-0 lg:divide-x "
+      onSubmit={(e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        sendOrder(e, address, apartment, city, state, phone, items);
+      }}
+    >
+      <div className="space-y-5">
         <h1 className="text-xl font-semibold">Shipping infromation</h1>
         <input
           type="text"
           placeholder="Address"
-          className="input p-2.5 border focus:ring hover:ring"
+          className="input "
           required
           value={address}
           onChange={(e) => setAddress(e.target.value)}
@@ -32,7 +32,7 @@ export default function CheckoutForm() {
         <input
           type="text"
           placeholder="Apartment,suite, etc."
-          className="input p-2.5 border focus:ring hover:ring"
+          className="input"
           required
           value={apartment}
           onChange={(e) => setApartment(e.target.value)}
@@ -40,7 +40,7 @@ export default function CheckoutForm() {
         <input
           type="text"
           placeholder="City"
-          className="input p-2.5 border focus:ring hover:ring"
+          className="input"
           required
           value={city}
           onChange={(e) => setCity(e.target.value)}
@@ -48,7 +48,7 @@ export default function CheckoutForm() {
         <input
           type="text"
           placeholder="State/ Province"
-          className="input p-2.5 border focus: hover:ring"
+          className="input"
           required
           value={state}
           onChange={(e) => setState(e.target.value)}
@@ -56,31 +56,29 @@ export default function CheckoutForm() {
         <input
           type="phone"
           placeholder="Phone"
-          className="input p-2.5 border focus:ring hover:ring"
           required
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
-
-        <section className="flex flex-col items-center py-3 md:px-4 md:py-0 md:pb-4">
-          <h1 className="text-xl font-semibold">Order Summary</h1>
-          <CartElement />
-          <button
-            type="submit"
-            className="bg-sky-400 px-4 h-10 py-1.5 text-center w-full rounded-lg text-white font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw] mt-3  disabled:bg-sky-300"
-            disabled={
-              address === "" ||
-              apartment === "" ||
-              city === "" ||
-              state === "" ||
-              phone === "" ||
-              items.length === 0
-            }
-          >
-            Confirm order
-          </button>
-        </section>
-      </form>
-    </div>
+      </div>
+      <section className="flex flex-col items-center py-3 md:px-4 md:py-0 md:pb-4">
+        <h1 className="text-xl font-semibold">Order Summary</h1>
+        <CartElement />
+        <button
+          type="submit"
+          className="bg-sky-400 px-4 h-10 py-1.5 text-center w-full rounded-lg text-white font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw] mt-3  disabled:bg-sky-300"
+          disabled={
+            address === "" ||
+            apartment === "" ||
+            city === "" ||
+            state === "" ||
+            phone === "" ||
+            items.length === 0
+          }
+        >
+          Confirm order
+        </button>
+      </section>
+    </form>
   );
 }

@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { LayoutGroup, motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import Select from "./ui/SelectMenu/Select";
+import { auth } from "../app/firebase";
 export default function CartElement() {
   const items = useAppSelector((state) => state.cart.items);
   const dispatch = useAppDispatch();
@@ -38,9 +39,18 @@ export default function CartElement() {
                   <p className="md:flex-1">{item.name}</p>
                   <div className="flex items-center gap-4 md:hidden ">
                     <Select
+                      amount={
+                        item.newAmount !== undefined
+                          ? item.newAmount
+                          : item.amount
+                      }
                       items={Array.from(
-                        Array(11 - item.amount),
-                        (_, i) => i + item.amount
+                        Array(
+                          parseInt(item.quantity) >= 10
+                            ? 10
+                            : parseInt(item.quantity)
+                        ),
+                        (_, i) => i + 1
                       )}
                       onSelect={(item) =>
                         dispatch(
@@ -72,9 +82,16 @@ export default function CartElement() {
               </div>
               <div className="hidden md:flex items-center md:flex-col gap-4">
                 <Select
+                  amount={
+                    item.newAmount !== undefined ? item.newAmount : item.amount
+                  }
                   items={Array.from(
-                    Array(11 - item.amount),
-                    (_, i) => i + item.amount
+                    Array(
+                      parseInt(item.quantity) >= 10
+                        ? 10
+                        : parseInt(item.quantity)
+                    ),
+                    (_, i) => i + 1
                   )}
                   onSelect={(item) =>
                     dispatch(
@@ -134,7 +151,10 @@ export default function CartElement() {
       {path === "/cart" && (
         <button
           type="button"
-          onClick={() => router.back()}
+          onClick={() => {
+            //router.back()
+            auth.signOut();
+          }}
           className="font-medium  text-sky-600 flex items-center gap-3 justify-center w-full group"
         >
           {total > 0 && <p className="text-gray-600 text-sm">or</p>}

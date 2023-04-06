@@ -4,9 +4,10 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 type ListBoxProps = {
   items: number[];
   onSelect: (item: number) => void;
+  amount: number;
 };
 
-const ListBox: React.FC<ListBoxProps> = ({ items, onSelect }) => {
+const ListBox: React.FC<ListBoxProps> = ({ items, onSelect, amount }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | 0>(0);
   const listRef = useRef<HTMLUListElement>(null);
@@ -15,7 +16,7 @@ const ListBox: React.FC<ListBoxProps> = ({ items, onSelect }) => {
     (item: number) => {
       onSelect(item);
       setIsOpen(false);
-      setSelectedIndex(0);
+      setSelectedIndex(item);
     },
     [onSelect]
   );
@@ -25,9 +26,11 @@ const ListBox: React.FC<ListBoxProps> = ({ items, onSelect }) => {
       setIsOpen(true);
       if (ref.current) {
         ref.current.focus();
+        setSelectedIndex(amount - 1);
       }
     } else {
       setIsOpen(false);
+      setSelectedIndex(amount - 1);
     }
   };
 
@@ -86,7 +89,7 @@ const ListBox: React.FC<ListBoxProps> = ({ items, onSelect }) => {
           id="options-menu"
           aria-haspopup="true"
         >
-          <p>{items[selectedIndex]}</p>
+          <p>{amount}</p>
           {isOpen ? (
             <ChevronUpIcon className="h-4 w-4" strokeWidth={2} />
           ) : (
