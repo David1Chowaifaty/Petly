@@ -1,6 +1,5 @@
 import Link from "next/link";
 import "./globals.css";
-import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import SearchMenu from "../components/SearchMenu";
 import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
 import NewsLetter from "../components/NewsLetter";
@@ -9,7 +8,6 @@ import Providers from "../Redux/Providers";
 import CartButton from "../components/ui/CartButton";
 import { authOptions } from "../pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
-import SessionProvider from "@/components/SessionProvider";
 
 export const metadata = {
   title: "Petly",
@@ -23,12 +21,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
-  console.log(session);
   return (
     <html lang="en">
       <body className="overflow-hidden overflow-y-auto">
         <Providers session={session}>
-          {session !== null && session.user?.email}
           <nav className="flex items-center justify-between h-14 px-4  bg-white/60  backdrop-blur-md sticky top-0 left-0 w-full  py-2 md:h-16 z-40 md:space-x-4 lg:h-20">
             <Link
               href={"/"}
@@ -37,7 +33,7 @@ export default async function RootLayout({
               Petly
             </Link>
             <MenuLinks />
-            <div className="hidden md:block order-3 w-48">
+            <div className="hidden lg:block order-3 w-48">
               <SearchMenu />
             </div>
             <div className="order-4">

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { FunctionComponent, useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 interface RegisterProps {}
 
@@ -54,7 +54,11 @@ const SignIn: FunctionComponent<RegisterProps> = () => {
       </button>
       <p>
         {"Don't have an account?"}
-        <Link href="/register" className="text-sky-500 hover:underline">
+        <Link
+          href="/register"
+          className="text-sky-500 hover:underline"
+          onClick={() => signOut()}
+        >
           {" "}
           Register here.
         </Link>

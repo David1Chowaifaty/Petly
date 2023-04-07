@@ -27,5 +27,6 @@ export function signUpWithFb(email: string, password: string) {
 export async function getUser(uid: string) {
   const q = query(collection(db, "users"), where("uid", "==", uid));
   const snap = await getDocs(q);
-  return !snap.empty;
+  if (snap.empty) return null;
+  return snap.docs[0];
 }

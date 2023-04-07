@@ -1,9 +1,9 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "@/app/firebase";
+import { auth } from "@/app/firebase";
 import NextAuth from "next-auth/next";
-import { FirestoreAdapter } from "@next-auth/firebase-adapter";
+import GoogleProvider from "next-auth/providers/google";
 interface User {
   id: string;
   displayName: string;
@@ -14,8 +14,13 @@ interface User {
 export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/signin",
+    newUser: "/register",
   },
   providers: [
+    GoogleProvider({
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET!,
+    }),
     CredentialsProvider({
       id: "credentials",
       name: "Credentials",
@@ -31,9 +36,8 @@ export const authOptions: NextAuthOptions = {
             credentials!.password
           );
           if (res) {
-            const { uid, displayName, photoURL, email, emailVerified } =
-              res.user;
-            return { id: uid, displayName, photoURL, email, emailVerified };
+            const { uid, displayName, photoURL, email } = res.user;
+            return { id: uid, name: displayName, image: photoURL, email };
           } else {
             throw new Error("Invalid email or password");
           }
@@ -43,18 +47,7 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-  callbacks: {
-    jwt: async ({ token, user }) => {
-      user && (token.user = user);
-      console.log(token);
-      return token;
-    },
-    session: async ({ session, token }) => {
-      const user = token.user as User;
-      session.user = user;
-      return session;
-    },
-  },
+  secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
   },
