@@ -21,20 +21,19 @@ const ListBox: React.FC<ListBoxProps> = ({ items, onSelect, amount }) => {
     [onSelect]
   );
 
-  const handleClick = (event: MouseEvent) => {
-    if (ref.current && ref.current.contains(event.target as Node)) {
-      setIsOpen(true);
-      if (ref.current) {
-        ref.current.focus();
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      if (ref.current && ref.current.contains(event.target as Node)) {
+        setIsOpen(true);
+        if (ref.current) {
+          ref.current.focus();
+          setSelectedIndex(amount - 1);
+        }
+      } else {
+        setIsOpen(false);
         setSelectedIndex(amount - 1);
       }
-    } else {
-      setIsOpen(false);
-      setSelectedIndex(amount - 1);
-    }
-  };
-
-  useEffect(() => {
+    };
     const handleKeyDown = (event: KeyboardEvent) => {
       if (!isOpen) {
         return;
@@ -70,7 +69,7 @@ const ListBox: React.FC<ListBoxProps> = ({ items, onSelect, amount }) => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("click", handleClick);
     };
-  }, [handleSelect, isOpen, items, selectedIndex]);
+  }, [amount, handleSelect, isOpen, items, selectedIndex]);
   useEffect(() => {
     if (listRef.current && selectedIndex !== null) {
       const itemHeight = (listRef.current.children[0] as HTMLElement)

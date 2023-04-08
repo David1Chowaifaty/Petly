@@ -3,11 +3,12 @@ import "./globals.css";
 import SearchMenu from "../components/SearchMenu";
 import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
 import NewsLetter from "../components/NewsLetter";
-import MenuLinks from "../components/MenuLinks";
 import Providers from "../Redux/Providers";
 import CartButton from "../components/ui/CartButton";
 import { authOptions } from "../pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
+import AccountMenu from "@/components/AccountMenu";
+import Menu from "@/components/Menu";
 
 export const metadata = {
   title: "Petly",
@@ -23,21 +24,51 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
   return (
     <html lang="en">
-      <body className="overflow-hidden overflow-y-auto">
+      <body className=" overflow-y-auto">
         <Providers session={session}>
-          <nav className="flex items-center justify-between h-14 px-4  bg-white/60  backdrop-blur-md sticky top-0 left-0 w-full  py-2 md:h-16 z-40 md:space-x-4 lg:h-20">
+          <nav className="flex items-center justify-between h-14 px-4 bg-white/60  backdrop-blur-md sticky top-0 left-0 w-full  py-2 z-40 md:space-x-4 lg:h-20">
             <Link
               href={"/"}
-              className="font-bold text-lg order-2 md:order-1 md:flex-1"
+              className="font-bold text-lg order-2 lg:order-1 lg:flex-1"
             >
               Petly
             </Link>
-            <MenuLinks />
+            <div className="flex items-center h-full space-x-6 lg:flex-row-reverse order-1 lg:order-2">
+              <Menu session={session} />
+
+              <Link
+                href={"/health"}
+                className={`
+          hidden lg:inline-flex relative h-full items-center`}
+              >
+                Health
+              </Link>
+              <Link
+                href={"/toys"}
+                className={` hidden lg:inline-flex relative h-full items-center`}
+              >
+                Toys
+              </Link>
+
+              <Link
+                href={"/foodandtreats"}
+                className={`hidden lg:inline-flex relative h-full items-center`}
+              >
+                Food and Treats
+              </Link>
+              <Link
+                href={"/"}
+                className={`hidden lg:inline-flex relative h-full items-center`}
+              >
+                Home
+              </Link>
+            </div>
             <div className="hidden lg:block order-3 w-48">
               <SearchMenu />
             </div>
-            <div className="order-4">
+            <div className="flex items-center gap-8 order-4 h-full ">
               <CartButton />
+              {session !== null && <AccountMenu session={session} />}
             </div>
           </nav>
           {children}
