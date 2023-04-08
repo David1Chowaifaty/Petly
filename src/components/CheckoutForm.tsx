@@ -2,21 +2,42 @@
 import { FormEvent, useEffect, useState } from "react";
 import CartElement from "./CartElement";
 import { useAppSelector } from "../Redux/hooks";
-import { sendOrder } from "../utils/CheckoutMethod";
-
-export default function CheckoutForm() {
+import { Session } from "next-auth";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+interface CheckoutFormProps {
+  session: Session | null;
+}
+export default function CheckoutForm({ session }: CheckoutFormProps) {
   const [address, setAddress] = useState<string>("");
   const [apartment, setApartment] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const items = useAppSelector((state) => state.cart.items);
+  const router = useRouter();
+  useEffect(() => {
+    (async () => {
+      if (session === null) {
+        router.push("/signin");
+      }
+    })();
+  }, [router, session]);
   return (
     <form
       className="grid px-4 py-3 gap-3 mt-6  divide-y lg:grid-cols-2 lg:divide-y-0 lg:divide-x "
-      onSubmit={(e: FormEvent<HTMLFormElement>) => {
+      onSubmit={async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        sendOrder(e, address, apartment, city, state, phone, items);
+        const user = session?.user;
+        const res = await axios.post("/api/checkout", {
+          address,
+          apartment,
+          city,
+          state,
+          phone,
+          items,
+          user,
+        });
       }}
     >
       <div className="space-y-5">
@@ -56,6 +77,7 @@ export default function CheckoutForm() {
         <input
           type="phone"
           placeholder="Phone"
+          className="input"
           required
           value={phone}
           onChange={(e) => setPhone(e.target.value)}

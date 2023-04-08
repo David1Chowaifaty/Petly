@@ -15,6 +15,7 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/signin",
     newUser: "/register",
+    signOut: "/",
   },
   providers: [
     GoogleProvider({

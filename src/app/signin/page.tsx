@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FunctionComponent, useState } from "react";
 import { signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 interface RegisterProps {}
 
 const SignIn: FunctionComponent<RegisterProps> = () => {
@@ -52,13 +53,22 @@ const SignIn: FunctionComponent<RegisterProps> = () => {
       >
         register
       </button>
+      <button
+        type="button"
+        onClick={() => signIn("google")}
+        className="px-4 h-10 py-1.5 text-center w-full flex items-center rounded-lg border font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw]"
+      >
+        <Image
+          src={"/google-icon.svg"}
+          alt="google icon"
+          height={20}
+          width={20}
+        />
+        <p className="flex-1">Sign in with google</p>
+      </button>
       <p>
         {"Don't have an account?"}
-        <Link
-          href="/register"
-          className="text-sky-500 hover:underline"
-          onClick={() => signOut()}
-        >
+        <Link href="/register" className="text-sky-500 hover:underline">
           {" "}
           Register here.
         </Link>

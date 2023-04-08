@@ -1,8 +1,9 @@
 "use client";
 import axios from "axios";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { FunctionComponent, useState } from "react";
-
+import { FunctionComponent, useEffect, useState } from "react";
+import Image from "next/image";
 interface RegisterProps {}
 
 const Register: FunctionComponent<RegisterProps> = () => {
@@ -52,6 +53,19 @@ const Register: FunctionComponent<RegisterProps> = () => {
         className="bg-sky-400 px-4 h-10 py-1.5 text-center w-full rounded-lg text-white font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw]"
       >
         Register
+      </button>
+      <button
+        type="button"
+        onClick={() => signIn("google")}
+        className="px-4 h-10 py-1.5 text-center w-full flex items-center rounded-lg border font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw]"
+      >
+        <Image
+          src={"/google-icon.svg"}
+          alt="google icon"
+          height={20}
+          width={20}
+        />
+        <p className="flex-1">Sign in with google</p>
       </button>
       <p>
         Already have an account?

@@ -1,10 +1,11 @@
-import React from "react";
 import CheckoutForm from "../../components/CheckoutForm";
-
-export default function page() {
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
+export default async function page() {
+  const session = await getServerSession(authOptions);
   return (
     <main className="h-full">
-      <CheckoutForm />
+      <CheckoutForm session={session} />
     </main>
   );
 }

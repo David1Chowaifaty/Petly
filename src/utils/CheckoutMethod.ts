@@ -7,20 +7,24 @@ import {
   runTransaction,
 } from "firebase/firestore";
 import { db } from "../app/firebase";
-import { FormEvent } from "react";
+import { User } from "next-auth";
 import { CartItemType } from "../Redux/features/cartSlice";
 interface Product {
   id: DocumentReference<DocumentData>;
   quantity: number;
 }
 export const sendOrder = async (
-  e: FormEvent<HTMLFormElement>,
   address: string,
   apartment: string,
   city: string,
   state: string,
   phone: string,
-  items: CartItemType[]
+  items: CartItemType[],
+  user:
+    | (User & {
+        id: string;
+      })
+    | undefined
 ) => {
   let newItems: CartItemType[] = [];
   let ids: Product[] = [];

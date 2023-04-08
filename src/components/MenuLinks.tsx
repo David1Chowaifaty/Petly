@@ -3,6 +3,7 @@
 import React from "react";
 import Menu from "./Menu";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 //import { usePathname } from "next/navigation";
 // const Underline = ({ path, link }: { path: string; link: string }) => {
 //   return (
@@ -50,6 +51,9 @@ export default function MenuLinks() {
       >
         Home
       </Link>
+      <button type="button" onClick={() => signOut()}>
+        log out
+      </button>
     </div>
   );
 }
