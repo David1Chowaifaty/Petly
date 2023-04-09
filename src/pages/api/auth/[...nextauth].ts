@@ -1,9 +1,13 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/app/firebase";
+import { auth, db } from "@/app/firebase";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+import { FirestoreAdapter } from "@next-auth/firebase-adapter";
+import { cert } from "firebase-admin/app";
+import admin from "firebase-admin";
+import { getUser } from "@/utils/registration";
 interface User {
   id: string;
   displayName: string;
@@ -17,6 +21,11 @@ export const authOptions: NextAuthOptions = {
     newUser: "/register",
     signOut: "/",
   },
+  // adapter: FirestoreAdapter({
+  //   credential: admin.credential.cert(
+  //     JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_SERVICE_ACCOUNT_KEY!)
+  //   ),
+  // }),
   providers: [
     GoogleProvider({
       clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
@@ -49,6 +58,39 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+  callbacks: {
+    async jwt({ token, user }) {
+      const dbUser = await getUser(user.id);
+      if (dbUser == null) {
+        if (user) {
+          token.id = user!.id;
+        }
+
+        return token;
+      }
+      const { data, id } = dbUser;
+      return {
+        id: data.id,
+        email: data.email,
+        picture: data.photoURL,
+        name: data.name,
+      };
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.picture;
+      }
+
+      return session;
+    },
+    redirect() {
+      return "/";
+    },
+  },
+
   session: {
     strategy: "jwt",
   },

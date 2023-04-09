@@ -1,7 +1,7 @@
 import React from "react";
 import { getFoodData } from "../../utils/getData";
 import Card from "../../components/Card";
-
+export const revalidate = 60;
 export default async function page() {
   const food = await getFoodData();
   return (

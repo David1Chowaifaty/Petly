@@ -1,6 +1,5 @@
 "use client";
 import { FormEvent, useEffect, useState } from "react";
-import CartElement from "./CartElement";
 import { useAppSelector } from "../Redux/hooks";
 import { Session } from "next-auth";
 import { useRouter } from "next/navigation";
@@ -15,14 +14,7 @@ export default function CheckoutForm({ session }: CheckoutFormProps) {
   const [state, setState] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const items = useAppSelector((state) => state.cart.items);
-  const router = useRouter();
-  useEffect(() => {
-    (async () => {
-      if (session === null) {
-        router.push("/signin");
-      }
-    })();
-  }, [router, session]);
+
   return (
     <form
       className="grid px-4 py-3 gap-3 mt-6  divide-y lg:grid-cols-2 lg:divide-y-0 lg:divide-x "
@@ -85,7 +77,6 @@ export default function CheckoutForm({ session }: CheckoutFormProps) {
       </div>
       <section className="flex flex-col items-center py-3 md:px-4 md:py-0 md:pb-4">
         <h1 className="text-xl font-semibold">Order Summary</h1>
-        <CartElement />
         <button
           type="submit"
           className="bg-sky-400 px-4 h-10 py-1.5 text-center w-full rounded-lg text-white font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw] mt-3  disabled:bg-sky-300"

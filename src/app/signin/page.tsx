@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import { FunctionComponent, useState } from "react";
-import { signIn, signOut } from "next-auth/react";
+import { FunctionComponent, useEffect, useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 interface RegisterProps {}
@@ -10,6 +10,12 @@ const SignIn: FunctionComponent<RegisterProps> = () => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const session = useSession();
+  useEffect(() => {
+    // if (session.data !== null) {
+    //   router.back();
+    // }
+  }, [session, router]);
   return (
     <form
       className="space-y-5 px-4 py-5"
@@ -55,7 +61,9 @@ const SignIn: FunctionComponent<RegisterProps> = () => {
       </button>
       <button
         type="button"
-        onClick={() => signIn("google")}
+        onClick={async () => {
+          await signIn("google");
+        }}
         className="px-4 h-10 py-1.5 text-center w-full flex items-center rounded-lg border font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw]"
       >
         <Image

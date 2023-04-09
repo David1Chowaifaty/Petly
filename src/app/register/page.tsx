@@ -56,7 +56,9 @@ const Register: FunctionComponent<RegisterProps> = () => {
       </button>
       <button
         type="button"
-        onClick={() => signIn("google")}
+        onClick={async () => {
+          signIn("google");
+        }}
         className="px-4 h-10 py-1.5 text-center w-full flex items-center rounded-lg border font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw]"
       >
         <Image
