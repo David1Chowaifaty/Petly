@@ -1,5 +1,4 @@
 import ProductClient from "@/components/ProductClient";
-import { getSingleDocument } from "@/utils/getData";
 import Image from "next/image";
 import React from "react";
 interface PageProps {
@@ -9,10 +8,10 @@ interface PageProps {
 }
 export default async function page({ params }: PageProps) {
   const { id } = params;
-  const food = await getSingleDocument("food", id);
+  const food = null;
   return (
     <main className="h-screen lg:h-full p-6 space-y-10">
-      <h1 className="text-xl font-bold text-gray-800 uppercase lg:hidden">
+      {/* <h1 className="text-xl font-bold text-gray-800 uppercase lg:hidden">
         {food?.name}
       </h1>
       <div className="grid gap-6 md:grid-cols-2 md:gap-10 items-center lg:gap-14">
@@ -66,7 +65,7 @@ export default async function page({ params }: PageProps) {
           <p className="text-gray-600">{food?.description}</p>
           <ProductClient data={food!} id={id} category="food" />
         </div>
-      </div>
+      </div> */}
     </main>
   );
 }

@@ -7,24 +7,24 @@ import {
   where,
 } from "firebase/firestore";
 import { auth, db } from "../app/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { rejects } from "assert";
 
-export function signUpWithFb(email: string, password: string) {
+export function signUpWithFb(email: string, password: string, name: string) {
   return new Promise((resolve, reject) =>
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
-        const { uid, email, emailVerified, displayName, photoURL } =
-          userCredential.user;
+        await updateProfile(userCredential.user, {
+          displayName: name,
+        });
+        const { uid, email, emailVerified, photoURL } = userCredential.user;
         await addDoc(collection(db, "users"), {
           uid,
           email,
           emailVerified,
-          displayName,
+          name,
           photoURL,
-        }).then(() =>
-          resolve({ uid, email, emailVerified, displayName, photoURL })
-        );
+        }).then(() => resolve({ uid, email, emailVerified, name, photoURL }));
       })
       .catch((error) => {
         reject(error);
@@ -52,7 +52,7 @@ export async function getUser(uid: string) {
         id: snap.docs[0].id,
         data: {
           email: snap.docs[0].data().email,
-          name: snap.docs[0].data().displayName,
+          name: snap.docs[0].data().name,
           id: snap.docs[0].data().uid,
           photoURL: snap.docs[0].data().photoURL,
         },

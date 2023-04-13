@@ -1,5 +1,5 @@
-import CheckoutForm from "../../components/CheckoutForm";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import CheckoutForm from "@/components/CheckoutForm";
+import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 

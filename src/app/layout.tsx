@@ -5,7 +5,7 @@ import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
 import NewsLetter from "../components/NewsLetter";
 import Providers from "../Redux/Providers";
 import CartButton from "../components/ui/CartButton";
-import { authOptions } from "../pages/api/auth/[...nextauth]";
+import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import AccountMenu from "@/components/AccountMenu";
 import Menu from "@/components/Menu";
@@ -24,9 +24,9 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
   return (
     <html lang="en">
-      <body className=" overflow-y-auto">
+      <body className="min-h-screen overflow-y-auto">
         <Providers session={session}>
-          <nav className="flex items-center justify-between h-14 px-4 bg-white/60  backdrop-blur-md sticky top-0 left-0 w-full  py-2 z-40 md:space-x-4 lg:h-20">
+          <nav className="flex items-center justify-between h-14 px-4 bg-white/60  backdrop-blur-md sticky inset-0 w-full  py-2 z-40 md:space-x-4 lg:h-20">
             <Link
               href={"/"}
               className="font-bold text-lg order-2 lg:order-1 lg:flex-1"
