@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
-import { FunctionComponent, useEffect, useState } from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-interface RegisterProps {}
+import Button from "@/components/ui/Button";
 
-const SignIn: FunctionComponent<RegisterProps> = () => {
+const SignIn = () => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -54,32 +54,28 @@ const SignIn: FunctionComponent<RegisterProps> = () => {
           className="input"
           required
         />
-        <button
-          type="submit"
-          className="bg-sky-400 px-4 h-10 py-1.5 text-center w-full rounded-lg text-white font-medium ring-sky-200 hover:bg-opacity-80 active:ring"
-        >
-          Register
-        </button>
+        <Button title="Register" type="submit" />
         <div className="flex items-center justify-center gap-2 w-full">
           <div className="w-[45%] h-[1px] bg-gray-100 block"></div>
           <p className="text-gray-300">Or</p>
           <div className="w-[45%] h-[1px] bg-gray-100 block"></div>
         </div>
-        <button
-          type="button"
+        <Button
+          title="Sign in with google"
+          variant={"outline"}
+          size={"lg"}
+          leadingIcon={
+            <Image
+              src={"/google-icon.svg"}
+              alt="google icon"
+              height={20}
+              width={20}
+            />
+          }
           onClick={async () => {
             await signIn("google");
           }}
-          className="bg-transparent h-10 w-full rounded-md py-2 px-4 flex items-center justify-center gap-5 border border-slate-200 hover:bg-slate-100"
-        >
-          <Image
-            src={"/google-icon.svg"}
-            alt="google icon"
-            height={20}
-            width={20}
-          />
-          <p>Sign in with google</p>
-        </button>
+        />
         <p>
           {"Don't have an account?"}
           <Link href="/register" className="text-slate-800 hover:underline">

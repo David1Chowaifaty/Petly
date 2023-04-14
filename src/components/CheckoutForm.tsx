@@ -4,6 +4,7 @@ import { useAppSelector } from "../Redux/hooks";
 import { Session } from "next-auth";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Button from "./ui/Button";
 interface CheckoutFormProps {
   session: Session | null;
 }
@@ -77,9 +78,9 @@ export default function CheckoutForm({ session }: CheckoutFormProps) {
       </div>
       <section className="flex flex-col items-center py-3 md:px-4 md:py-0 md:pb-4">
         <h1 className="text-xl font-semibold">Order Summary</h1>
-        <button
+        <Button
           type="submit"
-          className="bg-sky-400 px-4 h-10 py-1.5 text-center w-full rounded-lg text-white font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw] mt-3  disabled:bg-sky-300"
+          title="Confirm order"
           disabled={
             address === "" ||
             apartment === "" ||
@@ -88,9 +89,7 @@ export default function CheckoutForm({ session }: CheckoutFormProps) {
             phone === "" ||
             items.length === 0
           }
-        >
-          Confirm order
-        </button>
+        />
       </section>
     </form>
   );

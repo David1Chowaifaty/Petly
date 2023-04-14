@@ -4,6 +4,7 @@ import { DocumentData } from "firebase/firestore";
 import { useState } from "react";
 import { useAppDispatch } from "../Redux/hooks";
 import { addToCart } from "../Redux/features/cartSlice";
+import Button from "./ui/Button";
 
 export default function ProductClient({
   data,
@@ -39,7 +40,7 @@ export default function ProductClient({
           <PlusIcon className="h-5 w-5" strokeWidth={2} />
         </button>
       </div>
-      <button
+      <Button
         type="button"
         disabled={counter === 0}
         className="bg-sky-400 px-4 h-10 py-1.5 text-center w-full rounded-lg text-white font-medium ring-sky-200 hover:bg-opacity-80 active:ring md:w-[40vw] disabled:bg-sky-300 disabled:cursor-not-allowed"
@@ -53,9 +54,8 @@ export default function ProductClient({
             })
           )
         }
-      >
-        Add To Cart
-      </button>
+        title="Add to cart"
+      />
     </div>
   );
 }

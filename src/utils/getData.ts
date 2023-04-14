@@ -1,3 +1,4 @@
+import axios from "axios";
 import { db } from "../app/firebase";
 import {
   collection,
@@ -11,6 +12,10 @@ type dataType = {
   data: DocumentData;
   id: string;
 };
+export async function getData() {
+  const res = axios.get("/api/products");
+  return res;
+}
 export const getToysData = async () => {
   const q = query(collection(db, "toys"));
   const data: dataType[] = [];
